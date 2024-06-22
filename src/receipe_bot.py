@@ -17,12 +17,14 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 sys.path.append("src/")
 
-from utils import load, dump
+from utils import load, dump, config
 
 
 class ReceipeGenerator:
     def __init__(self, name="Receipe Generator"):
         self.name = name.capitalize()
+
+        self.CONFIG = config()
 
     def access_api_key(self):
         try:
@@ -31,9 +33,19 @@ class ReceipeGenerator:
         except Exception as e:
             print("An error occurred while loading the API key:", e)
             raise
-        
+
     def extract_dataset(self):
-        
+        if os.path.exists(self.CONFIG["PDF_PATH"]):
+            self.loader = DirectoryLoader(
+                path=self.CONFIG["PDF_PATH"], glob="**/*.pdf", use_multithreading=True
+            )
+
+            self.documents = self.loader.load()
+
+        else:
+            raise Exception(
+                "PDFs path cannot be found to extract the dataset".capitalize()
+            )
 
 
 if __name__ == "__main__":
