@@ -89,15 +89,25 @@ class ReceipeGenerator:
 
             self.persist_directory = self.CONFIG["path"]["DATABASE_PATH"]
 
-            self.vectordb = Chroma.from_documents(
-                documents=self.documents,
-                embedding=OpenAIEmbeddings(),
-                persist_directory=self.persist_directory,
-            )
+            try:
+                self.vectordb = Chroma.from_documents(
+                    documents=self.documents,
+                    embedding=OpenAIEmbeddings(),
+                    persist_directory=self.persist_directory,
+                )
 
-            print(
-                "Database created and all the documents are stored in the database".title()
-            )
+                print(
+                    "Database created and all the documents are stored in the database".title()
+                )
+
+            except FileNotFoundError as fnf_error:
+                print(f"File not found error: {fnf_error}".capitalize())
+
+            except ValueError as val_error:
+                print(f"Value error: {val_error}".capitalize())
+
+            except Exception as e:
+                print(f"An unexpected error occurred: {e}".capitalize())
 
         else:
             raise Exception("The processed path is not defined".capitalize())
