@@ -1,4 +1,5 @@
 import os
+import sys
 import warnings
 from dotenv import load_dotenv
 
@@ -14,6 +15,10 @@ from langchain.memory import ConversationBufferMemory
 from langchain.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
+sys.path.append("src/")
+
+from utils import load, dump
+
 
 class ReceipeGenerator:
     def __init__(self, name="Receipe Generator"):
@@ -26,6 +31,9 @@ class ReceipeGenerator:
         except Exception as e:
             print("An error occurred while loading the API key:", e)
             raise
+        
+    def extract_dataset(self):
+        
 
 
 if __name__ == "__main__":

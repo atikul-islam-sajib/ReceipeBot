@@ -1,3 +1,4 @@
+import yaml
 import joblib
 
 
@@ -15,3 +16,8 @@ def load(filename=None):
 
     else:
         raise Exception("Filename should be passed".capitalize())
+
+
+def config():
+    with open("./config.yml", "r") as file:
+        return yaml.safe_load(file)
