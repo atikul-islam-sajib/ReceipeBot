@@ -12,7 +12,7 @@ from langchain.vectorstores import Chroma
 from langchain.prompts import PromptTemplate
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
-from langchain.document_loaders import DirectoryLoader
+from langchain.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 sys.path.append("src/")
@@ -52,6 +52,8 @@ class ReceipeGenerator:
             self.documents = self.text_splitter.split_documents(
                 documents=self.documents
             )
+
+            print(self.documents)
 
         else:
             raise Exception(
