@@ -76,9 +76,34 @@ class ReceipeGenerator:
             )
 
     def persist_to_database(self):
-        pass
+        if os.path.exists(self.CONFIG["path"]["PROCESSED_PATH"]):
+
+            self.documents = load(
+                filename=os.path.join(
+                    self.CONFIG["path"]["PROCESSED_PATH"], "documents.pkl"
+                ),
+            )
+
+            if not os.path.exists(self.CONFIG["path"]["DATABASE_PATH"]):
+                os.makedirs(self.CONFIG["path"]["DATABASE_PATH"], exist_ok=True)
+
+            self.persist_directory = self.CONFIG["path"]["DATABASE_PATH"]
+
+            self.vectordb = Chroma.from_documents(
+                documents=self.documents,
+                embedding=OpenAIEmbeddings(),
+                persist_directory=self.persist_directory,
+            )
+
+            print(
+                "Database created and all the documents are stored in the database".title()
+            )
+
+        else:
+            raise Exception("The processed path is not defined".capitalize())
 
 
 if __name__ == "__main__":
     receipe = ReceipeGenerator()
     receipe.extract_dataset()
+    receipe.persist_to_database()
