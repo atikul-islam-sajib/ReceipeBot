@@ -54,7 +54,21 @@ class ReceipeGenerator:
                 documents=self.documents
             )
 
-            print(self.documents)
+            if self.CONFIG["path"]["PROCESSED_PATH"]:
+                dump(
+                    value=self.documents,
+                    filename=os.path.join(
+                        self.CONFIG["path"]["PROCESSED_PATH"], "documents.pkl"
+                    ),
+                )
+
+                print(
+                    "Documents file is store in the folder:",
+                    self.CONFIG["path"]["PROCESSED_PATH"],
+                )
+
+            else:
+                raise Exception("The processed path is not defined".capitalize())
 
         else:
             raise Exception(
