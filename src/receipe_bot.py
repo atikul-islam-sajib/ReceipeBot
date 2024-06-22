@@ -37,7 +37,7 @@ class ReceipeGenerator:
     def extract_dataset(self):
         if os.path.exists(self.CONFIG["PDF_PATH"]):
             self.loader = DirectoryLoader(
-                path=self.CONFIG["PDF_PATH"], glob="**/*.pdf", use_multithreading=True
+                path=self.CONFIG["PDFs_PATH"], glob="**/*.pdf", use_multithreading=True
             )
 
             self.documents = self.loader.load()
@@ -59,4 +59,4 @@ class ReceipeGenerator:
 
 if __name__ == "__main__":
     receipe = ReceipeGenerator()
-    print(receipe.access_api_key())
+    receipe.extract_dataset()
