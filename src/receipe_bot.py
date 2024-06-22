@@ -42,6 +42,15 @@ class ReceipeGenerator:
 
             self.documents = self.loader.load()
 
+            self.text_splitter = RecursiveCharacterTextSplitter(
+                chunk_size=self.CONFIG["token"]["chunk_size"],
+                chunk_overlap=self.CONFIG["token"]["chunk_overlap"],
+            )
+
+            self.documents = self.text_splitter.split_documents(
+                documents=self.documents
+            )
+
         else:
             raise Exception(
                 "PDFs path cannot be found to extract the dataset".capitalize()
