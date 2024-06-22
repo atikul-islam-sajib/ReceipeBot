@@ -1,6 +1,7 @@
 path:
   PDFs_PATH: "./data/PDFs"
-  PROCESSED_PATH: "./data/processed" 
+  PROCESSED_PATH: "./data/processed"
+  DATABASE_PATH: "./db" 
 
 token:
   chunk_size: 1000

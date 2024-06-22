@@ -75,6 +75,9 @@ class ReceipeGenerator:
                 "PDFs path cannot be found to extract the dataset".capitalize()
             )
 
+    def persist_to_database(self):
+        pass
+
 
 if __name__ == "__main__":
     receipe = ReceipeGenerator()
