@@ -35,7 +35,7 @@ class ReceipeGenerator:
             raise
 
     def extract_dataset(self):
-        if os.path.exists(self.CONFIG["PDF_PATH"]):
+        if os.path.exists(self.CONFIG["path"]["PDFs_PATH"]):
             self.loader = DirectoryLoader(
                 path=self.CONFIG["path"]["PDFs_PATH"],
                 glob="**/*.pdf",
