@@ -40,6 +40,7 @@ class ReceipeGenerator:
                 path=self.CONFIG["path"]["PDFs_PATH"],
                 glob="**/*.pdf",
                 use_multithreading=True,
+                loader_cls=PyPDFLoader,
             )
 
             self.documents = self.loader.load()
