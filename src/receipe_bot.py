@@ -118,9 +118,14 @@ class ReceipeGenerator:
             persist_directory=self.CONFIG["path"]["DATABASE_PATH"],
         )
 
-        self.retriever = self.database.as_retriever(search_kwargs={"k": 5})
+        return self.database
 
-        print(len(self.retriever.get_relevant_documents("Mexican food")))
+    def chatReceipe(self):
+        self.database = self.access_to_db()
+
+        self.retriever = self.database.as_retriever(
+            search_kwargs={"k": self.CONFIG["retriever"]["k"]}
+        )
 
 
 if __name__ == "__main__":
