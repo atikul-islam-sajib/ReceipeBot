@@ -112,6 +112,9 @@ class ReceipeGenerator:
         else:
             raise Exception("The processed path is not defined".capitalize())
 
+    def access_to_db(self):
+        pass
+
 
 if __name__ == "__main__":
     receipe = ReceipeGenerator()
