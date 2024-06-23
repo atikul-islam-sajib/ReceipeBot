@@ -1,0 +1,68 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python src/receipe_bot.py --train
+    deps:
+    - path: ./.env
+      hash: md5
+      md5: 424a7a8ab4b5e3567f6caf117b5aaa46
+      size: 127
+    - path: ./config.yml
+      hash: md5
+      md5: 5420058c70221d8269023aebead60680
+      size: 257
+    - path: ./data
+      hash: md5
+      md5: eecc252fa1a737be6add822d594f82e2.dir
+      size: 192014425
+      nfiles: 19
+    - path: ./db
+      hash: md5
+      md5: 2b281e2d6cf137c8fb9e3126bdf93d7e.dir
+      size: 225096682
+      nfiles: 6
+    - path: src/helper.py
+      hash: md5
+      md5: f5014af40c1f70956d3b019cc22122d8
+      size: 179
+    - path: src/receipe_bot.py
+      hash: md5
+      md5: dd5e3899c7250cc9cb61055523e1ef75
+      size: 5807
+    - path: src/utils.py
+      hash: md5
+      md5: 17eef21adbf11a8180c802d7088215cc
+      size: 534
+  chat:
+    cmd: python src/receipe_bot.py --chat
+    deps:
+    - path: ./.env
+      hash: md5
+      md5: 424a7a8ab4b5e3567f6caf117b5aaa46
+      size: 127
+    - path: ./config.yml
+      hash: md5
+      md5: 5420058c70221d8269023aebead60680
+      size: 257
+    - path: ./data
+      hash: md5
+      md5: eecc252fa1a737be6add822d594f82e2.dir
+      size: 192014425
+      nfiles: 19
+    - path: ./db
+      hash: md5
+      md5: 2b281e2d6cf137c8fb9e3126bdf93d7e.dir
+      size: 225096682
+      nfiles: 6
+    - path: src/helper.py
+      hash: md5
+      md5: f5014af40c1f70956d3b019cc22122d8
+      size: 179
+    - path: src/receipe_bot.py
+      hash: md5
+      md5: dd5e3899c7250cc9cb61055523e1ef75
+      size: 5807
+    - path: src/utils.py
+      hash: md5
+      md5: 17eef21adbf11a8180c802d7088215cc
+      size: 534
