@@ -1,0 +1,28 @@
+stages:
+  train:
+    cmd: python src/receipe_bot.py --train
+    deps:
+      - src/receipe_bot.py
+      - src/helper.py
+      - src/utils.py
+      - ./config.yml
+      - ./db
+      - ./data
+      - ./.env
+
+    outs:
+      - ./data
+        persist: true
+      - ./db
+        persist: true
+
+  chat:
+    cmd: python src/receipe_bot.py --chat
+    deps:
+      - src/receipe_bot.py
+      - src/helper.py
+      - src/utils.py
+      - ./config.yml
+      - ./.env
+      - ./db
+      - ./data
