@@ -1,4 +1,4 @@
-prompt = """
+template = """
 Use the following context and chat history to answer the question:
 ------
 Context:

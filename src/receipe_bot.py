@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+warnings.filterwarnings("ignore")
+
 
 from langchain.llms import OpenAI
 from langchain.chains import RetrievalQA
@@ -17,6 +19,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 sys.path.append("src/")
 
+from helper import template
 from utils import load, dump, config
 
 
@@ -126,6 +129,30 @@ class ReceipeGenerator:
         self.retriever = self.database.as_retriever(
             search_kwargs={"k": self.CONFIG["retriever"]["k"]}
         )
+
+        self.prompt = PromptTemplate(
+            input_variables=["context", "question", "history"], template=template
+        )
+        self.memory = ConversationBufferMemory(
+            input_key="question", memory_key="history"
+        )
+
+        self.chain = RetrievalQA.from_chain_type(
+            llm=OpenAI(
+                temperature=1.0,
+                model_name="gpt-3.5-turbo",
+                openai_api_key=self.access_api_key(),
+            ),
+            chain_type="stuff",
+            retriever=self.retriever,
+            chain_type_kwargs={"prompt": self.prompt, "memory": self.memory},
+        )
+
+        while True:
+            inputs = input("Query: ")
+            result = self.chain(inputs=inputs)["result"]
+
+            print("Answer:", result)
 
 
 if __name__ == "__main__":
