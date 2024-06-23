@@ -132,4 +132,5 @@ if __name__ == "__main__":
     receipe = ReceipeGenerator()
     # receipe.extract_dataset()
     # receipe.persist_to_database()
-    receipe.access_to_db()
+    # receipe.access_to_db()
+    receipe.chatReceipe()

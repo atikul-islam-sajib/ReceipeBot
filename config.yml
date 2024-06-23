@@ -7,5 +7,5 @@ token:
   chunk_size: 1000
   chunk_overlap: 200
 
-retriver:
+retriever:
   k: 4
