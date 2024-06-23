@@ -12,11 +12,11 @@ def read(fname):
 
 
 setup(
-    name="segGAN",
+    name="chatRecipe",
     version="0.0.1",
     author="Atikul Islam Sajib",
     author_email="atikulislamsajib137@gmail.com",
-    description=("A part of the chatReceipe package"),
+    description=("A part of the chatRecipe package"),
     license="MIT",
     keywords="example documentation tutorial",
     packages=find_namespace_packages(where="src"),
