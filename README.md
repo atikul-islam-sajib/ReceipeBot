@@ -1,4 +1,4 @@
-# RecipeBot using Langchain, VectorDB
+# RecipeBot using Langchain, VectorDB, & OpenAI APIs
 
 RecipeBot is an advanced conversational assistant designed to help users find recipes based on the ingredients they have on hand. Utilizing a collection of PDF files containing diverse recipes, RecipeBot processes these documents, stores the information in a database, and efficiently retrieves relevant recipes in response to user queries.
 
