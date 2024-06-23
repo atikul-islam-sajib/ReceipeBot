@@ -28,6 +28,7 @@ class ReceipeGenerator:
         self.name = name.capitalize()
 
         self.CONFIG = config()
+        self.chat_limit = self.CONFIG["chatReceipe"]["limit"]
 
     def access_api_key(self):
         try:
@@ -139,8 +140,8 @@ class ReceipeGenerator:
 
         self.chain = RetrievalQA.from_chain_type(
             llm=OpenAI(
-                temperature=1.0,
-                model_name="gpt-3.5-turbo",
+                temperature=self.CONFIG["OpenAI"]["temperature"],
+                model_name=self.CONFIG["OpenAI"]["model"],
                 openai_api_key=self.access_api_key(),
             ),
             chain_type="stuff",
@@ -148,11 +149,13 @@ class ReceipeGenerator:
             chain_type_kwargs={"prompt": self.prompt, "memory": self.memory},
         )
 
-        while True:
+        while self.chat_limit != 0:
             inputs = input("Query: ")
             result = self.chain(inputs=inputs)["result"]
 
             print("Answer:", result)
+
+            self.chat_limit -= 1
 
 
 if __name__ == "__main__":
