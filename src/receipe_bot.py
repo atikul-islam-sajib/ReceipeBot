@@ -1,5 +1,6 @@
 import os
 import sys
+import argparse
 import warnings
 from dotenv import load_dotenv
 
@@ -157,10 +158,27 @@ class ReceipeGenerator:
 
             self.chat_limit -= 1
 
+        print("You have crossed the limit for today, Have a nice day !".capitalize())
+
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="ReceipeBot using OpenAI".title())
+    parser.add_argument("--train", action="store_true", help="Training the model")
+    parser.add_argument("--chat", action="store_true", help="Chat with the model")
+
+    args = parser.parse_args()
+
     receipe = ReceipeGenerator()
-    # receipe.extract_dataset()
-    # receipe.persist_to_database()
-    # receipe.access_to_db()
-    receipe.chatReceipe()
+
+    if args.train:
+        receipe.extract_dataset()
+        receipe.persist_to_database()
+
+    elif args.chat:
+        receipe.access_to_db()
+        receipe.chatReceipe()
+
+    else:
+        print("Please provide the correct argument".capitalize())
+
+        print("Thank you for using the ReceipeBot".title())
