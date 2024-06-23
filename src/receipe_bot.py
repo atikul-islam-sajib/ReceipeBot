@@ -113,10 +113,18 @@ class ReceipeGenerator:
             raise Exception("The processed path is not defined".capitalize())
 
     def access_to_db(self):
-        pass
+        self.database = Chroma(
+            embedding_function=OpenAIEmbeddings(),
+            persist_directory=self.CONFIG["path"]["DATABASE_PATH"],
+        )
+
+        self.retriever = self.database.as_retriever(search_kwargs={"k": 5})
+
+        print(len(self.retriever.get_relevant_documents("Mexican food")))
 
 
 if __name__ == "__main__":
     receipe = ReceipeGenerator()
-    receipe.extract_dataset()
-    receipe.persist_to_database()
+    # receipe.extract_dataset()
+    # receipe.persist_to_database()
+    receipe.access_to_db()
